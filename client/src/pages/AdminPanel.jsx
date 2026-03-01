@@ -26,7 +26,7 @@ const AdminPanel = () => {
 
   const fetchProjects = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/projects');
+      const { data } = await axios.get('https://portfolio-r8gs.onrender.com/api/projects');
       setProjects(data);
     } catch (error) { console.error(error); }
   };
@@ -43,7 +43,7 @@ const AdminPanel = () => {
       const config = { 
         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${userInfo.token}` } 
       };
-      const { data } = await axios.post('http://localhost:5000/api/upload', uploadData, config);
+      const { data } = await axios.post('https://portfolio-r8gs.onrender.com/api/upload', uploadData, config);
       setFormData({ ...formData, image: data }); 
       setUploading(false);
       toast.success('File Uploaded!');
@@ -58,7 +58,7 @@ const AdminPanel = () => {
     if (confirm('Delete this project?')) {
       try {
         const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-        await axios.delete(`http://localhost:5000/api/projects/${id}`, config);
+        await axios.delete(`https://portfolio-r8gs.onrender.com/api/projects/${id}`, config);
         toast.success('Project Deleted');
         fetchProjects();
       } catch (error) { toast.error('Failed to delete'); }
@@ -74,7 +74,7 @@ const AdminPanel = () => {
         techStack: formData.techStack.includes(',') ? formData.techStack.split(',').map(t => t.trim()) : [formData.techStack]
       };
 
-      await axios.post('http://localhost:5000/api/projects', formattedData, config);
+      await axios.post('https://portfolio-r8gs.onrender.com/api/projects', formattedData, config);
       toast.success('Project Added!');
       setShowForm(false);
       fetchProjects();

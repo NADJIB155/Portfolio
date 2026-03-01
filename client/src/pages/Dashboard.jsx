@@ -20,7 +20,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/projects');
+        const { data } = await axios.get('https://portfolio-r8gs.onrender.com/api/projects');
         setProjects(data);
         setFilteredProjects(data);
       } catch (error) {
