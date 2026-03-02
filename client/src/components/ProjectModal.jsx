@@ -21,25 +21,27 @@ const ProjectModal = ({ project, onClose }) => {
             <X size={24} className="text-slate-500 dark:text-slate-300" />
           </button>
 
-         {/* Media Section */}
-          <div className="h-64 sm:h-80 w-full bg-slate-100 dark:bg-slate-800 relative flex items-center justify-center">
-       {project.image ? (
-    // Check if it's a video
+{/* Media Section */}
+<div className="h-64 sm:h-80 w-full bg-slate-100 dark:bg-slate-800 relative flex items-center justify-center">
+  {/* On vérifie si l'image existe ET si c'est un vrai lien internet valide */}
+  {project.image && project.image.includes('http') ? (
+    
     project.image.includes('video') || project.image.includes('.mp4') ? (
       <video src={project.image} controls className="w-full h-full object-contain bg-black" />
     ) : (
-      // If it's an image
       <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
     )
+
   ) : (
-    // IF THERE IS NO IMAGE AT ALL (Like test2)
+    
+    // Si c'est vide, "null", ou pas un lien valide
     <div className="flex flex-col items-center justify-center text-slate-400">
       <span className="text-xl font-bold mb-2">No Preview Available</span>
       <span className="text-sm">This project does not have a demo video or image.</span>
     </div>
+    
   )}
-     </div>
-
+</div>
           {/* Content Section */}
           <div className="p-8">
             <div className="flex justify-between items-start mb-4">
