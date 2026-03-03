@@ -10,15 +10,17 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: [
-  'http://localhost:5173', 
-  'https://portfolio-five-lilac-110d71rqne.vercel.app', // Ton lien Vercel exact
-  'https://portfolio-jjoih4fht-hanadjib70-8010s-projects.vercel.app' // Ajoute aussi celui-là pour être sûr
-],
+  origin: function (origin, callback) {
+    // Si l'origine contient 'localhost' ou 'vercel.app', on laisse passer !
+    if (!origin || origin.includes('localhost') || origin.includes('vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Bloqué par le CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
-
 
 app.get('/', (req, res) => {
     res.send('API is running...');
