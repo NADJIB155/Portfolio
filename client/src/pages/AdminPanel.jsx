@@ -3,12 +3,14 @@ import axios from 'axios';
 import { Plus, Trash2, UploadCloud } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/projects`);
 
 const AdminPanel = () => {
   const [projects, setProjects] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
+  
   
   // Form State
   const [formData, setFormData] = useState({
