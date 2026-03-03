@@ -11,9 +11,10 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   origin: [
-    'http://localhost:5173',
-    'https://portfolio-jjoih4fht-hanadjib70-8010s-projects.vercel.app/' 
-  ],
+  'http://localhost:5173', 
+  'https://portfolio-five-lilac-110d71rqne.vercel.app', // Ton lien Vercel exact
+  'https://portfolio-jjoih4fht-hanadjib70-8010s-projects.vercel.app' // Ajoute aussi celui-là pour être sûr
+],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
