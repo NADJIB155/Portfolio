@@ -11,8 +11,8 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   origin: [
-    
-    'https://portfolio-r8gs.onrender.com' 
+    'http://localhost:5173',
+    'https://portfolio-jjoih4fht-hanadjib70-8010s-projects.vercel.app/' 
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
