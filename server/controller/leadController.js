@@ -3,7 +3,7 @@ const Lead = require('../models/Lead');
 const axios = require('axios'); // Make sure you have axios installed: npm install axios
 
 // Replace this with your actual n8n Webhook URL later
-const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL || 'http://localhost:5678/webhook/portfolio-lead';
+const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL || 'https://odd-parts-worry.loca.lt/webhook-test/portfolio-lead';
 
 exports.submitContactForm = async (req, res) => {
   try {
@@ -11,10 +11,11 @@ exports.submitContactForm = async (req, res) => {
 
     // 1. Save the raw message to MongoDB immediately
     const newLead = new Lead({
-      senderName,
-      senderEmail,
-      originalMessage,
-      aiClassification: 'Pending', // It hasn't been processed by AI yet
+      senderName: name,         // 'name' du React devient 'senderName'
+      senderEmail: email,       // 'email' du React devient 'senderEmail'
+      originalMessage: message, // 'message' du React devient 'originalMessage'
+      company: company,         // Optionnel, si tu l'as ajouté dans ton modèle
+      aiClassification: 'Pending',
     });
 
     const savedLead = await newLead.save();
