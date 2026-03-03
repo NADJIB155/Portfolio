@@ -1,10 +1,11 @@
-import { LayoutDashboard, LogIn, LogOut, FolderGit2, Moon, Sun } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { LayoutDashboard, LogIn, LogOut, FolderGit2, Moon, Sun, Mail } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 const Sidebar = () => {
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
+  const location = useLocation(); // Optionnel: pour savoir sur quelle page on est
 
   // Check if user is logged in
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -28,14 +29,41 @@ const Sidebar = () => {
 
       {/* Navigation Links */}
       <nav className="flex flex-col gap-2">
-        <Link to="/" className="flex items-center gap-3 px-4 py-3 bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 rounded-xl font-medium transition-colors">
+        <Link 
+          to="/" 
+          className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors ${
+            location.pathname === '/' 
+            ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' 
+            : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
+          }`}
+        >
           <LayoutDashboard size={20} />
           Dashboard
+        </Link>
+
+        {/* NOUVEAU LIEN CONTACT */}
+        <Link 
+          to="/contact" 
+          className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors ${
+            location.pathname === '/contact' 
+            ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' 
+            : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
+          }`}
+        >
+          <Mail size={20} />
+          Contact Me
         </Link>
         
         {/* ONLY SHOW ADMIN PANEL IF LOGGED IN */}
         {userInfo && (
-          <Link to="/admin" className="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white rounded-xl font-medium transition-colors">
+          <Link 
+            to="/admin" 
+            className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors ${
+              location.pathname === '/admin' 
+              ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' 
+              : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
+            }`}
+          >
             <FolderGit2 size={20} />
             Admin Panel
           </Link>

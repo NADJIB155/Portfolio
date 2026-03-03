@@ -8,7 +8,7 @@ const projectSchema = new mongoose.Schema({
   liveLink: { type: String },
   category: { type: String }, // e.g., 'Web Dev', 'Automation', 'Data Analysis'
   
-  // NEW: The AI Context for the RAG Assistant
+  image: { type: String },
   ragContext: {
     architecture: { type: String, default: "" },      // "Used MVC pattern with Express..."
     challengesSolved: { type: String, default: "" },  // "Handled JWT token expiration by..."
