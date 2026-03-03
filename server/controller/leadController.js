@@ -3,7 +3,7 @@ const Lead = require('../models/Lead');
 const axios = require('axios'); // Make sure you have axios installed: npm install axios
 
 // Replace this with your actual n8n Webhook URL later
-const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL || 'https://odd-parts-worry.loca.lt/webhook-test/portfolio-lead';
+const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL || 'https://twelve-cases-march.loca.lt/webhook-test/portfolio-lead';
 
 exports.submitContactForm = async (req, res) => {
   try {
